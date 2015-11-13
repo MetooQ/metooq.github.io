@@ -69,6 +69,6 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  rep: https://github.com/MetooQ/metooq.github.io.git
+  repo: https://github.com/MetooQ/metooq.github.io.git
   branch: master
   message: blog
