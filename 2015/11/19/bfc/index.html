@@ -27,7 +27,7 @@
 
 
   
-    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   
 
 
@@ -83,7 +83,7 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
   <title> BFC(Block Formatting Contexts) | Christy's blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   <!--[if lte IE 8]>
   <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
@@ -130,7 +130,7 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu menu-left">
       
         
         <li class="menu-item menu-item-home">
@@ -138,7 +138,7 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            首頁
+            首页
           </a>
         </li>
       
@@ -148,7 +148,7 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            歸檔
+            归档
           </a>
         </li>
       
@@ -158,16 +158,42 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            標籤
+            标签
           </a>
         </li>
       
 
       
       
+        <li class="menu-item menu-item-search">
+          <a href="#" class="st-search-show-outputs">
+            
+              <i class="menu-item-icon fa fa-search icon-next-search"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'UNMS-PExfSWd6JiKKkB7','2.0.0');
+</script>
+
+
+
+    </div>
   
 </nav>
 
@@ -208,7 +234,7 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
 
         <div class="post-meta">
           <span class="post-time">
-            發表於
+            发表于
             <time itemprop="dateCreated" datetime="2015-11-19T20:27:19+08:00" content="2015-11-19">
               2015-11-19
             </time>
@@ -217,6 +243,13 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/19/bfc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/19/bfc/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -274,6 +307,25 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
 
     <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2015/11/19/bfc/"
+     data-title="BFC(Block Formatting Contexts)"
+     data-content=""
+     data-url="http://yoursite.com/2015/11/19/bfc/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
     </div>
   </div>
 
@@ -282,9 +334,16 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
 
         
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
         
   <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/19/bfc/"
+           data-title="BFC(Block Formatting Contexts)" data-url="http://yoursite.com/2015/11/19/bfc/">
+      </div>
     
   </div>
 
@@ -310,10 +369,10 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目錄
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            本站概覽
+            站点概览
           </li>
         </ul>
       
@@ -323,26 +382,26 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
           <img class="site-author-image" src="http://tp1.sinaimg.cn/1778533312/180/5702605166/0" alt="MaQian" itemprop="image"/>
           <p class="site-author-name" itemprop="name">MaQian</p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
+        <p class="site-description motion-element" itemprop="description">卖萌的前端初学者ლ(^o^ლ)</p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">文章</span>
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             
               <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">分類</span>
+              <span class="site-state-item-name">分类</span>
               
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">標籤</span>
+              <span class="site-state-item-name">标签</span>
               </a>
           </div>
 
@@ -351,6 +410,24 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/MetooQ" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/metooq" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
           
         </div>
 
@@ -402,11 +479,11 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
 </div>
 
 <div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  主題 -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT
   </a>
@@ -427,11 +504,28 @@ W3C中的定义浮动元素、绝对定位元素、非块级盒子的块级元�
 
   
     
-    
 
   
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"metooq"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
 
 
+    
   
 
   
