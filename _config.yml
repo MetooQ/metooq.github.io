@@ -5,9 +5,9 @@
 # Site
 title: Christy's blog
 subtitle:
-description:
+description: 卖萌的前端初学者ლ(^o^ლ)
 author: MaQian
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -73,5 +73,19 @@ deploy:
   branch: master
   message: blog
   
-  
+# sidebar 
 avatar: http://tp1.sinaimg.cn/1778533312/180/5702605166/0
+
+social: 
+  github: https://github.com/MetooQ
+  weibo: http://weibo.com/metooq
+
+
+# duoshuo
+duoshuo_shortname: metooq
+duoshuo_share: true
+duoshuo_hotartical: true
+
+
+# Swiftype
+swiftype_key: UNMS-PExfSWd6JiKKkB7
