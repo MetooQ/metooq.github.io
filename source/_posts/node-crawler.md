@@ -48,7 +48,7 @@ filterChapters方法用来提取主页中的章节（即顶部导航栏的内容
 function filterChapters(html) {
 	var $ = cheerio.load(html);
 	var chapters = $('.top_nav');
-
+	
 	//数据结构
 	// [{
 	// 	chapterTitle: '',
@@ -57,14 +57,14 @@ function filterChapters(html) {
 	// 		url: ''
 	// 	]
 	// }]
-
+	
 	var data = [];
-
+	
 	chapters.each(function(item) {
 		var chapter = $(this);
 		var chapterTitle = chapter.find('span').text();
 		var subs = chapter.next().find('a');
-
+	
 		var chapterData = {
 			chapterTitle: chapterTitle,
 			sub: []
@@ -74,16 +74,16 @@ function filterChapters(html) {
 			var sub = $(this);
 			var subTitle = sub.text();
 			var url = sub.attr('href');
-
+	
 			chapterData.sub.push({
 				subTitle: subTitle,
 				url: url 
 			})
 		});
-
+	
 		data.push(chapterData);
 	});
-
+	
 	return data;
 
 }
@@ -96,7 +96,7 @@ function printData(data) {
 	data.forEach(function(item) {
 		var chapterTitle = item.chapterTitle;
 		console.log(chapterTitle + '\n');
-
+	
 		item.sub.forEach(function(sub) {
 			console.log('  【' + sub.subTitle + '】  ' + sub.url + '\n');
 		});
