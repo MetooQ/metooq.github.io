@@ -53,25 +53,26 @@
 
 
 
-<meta name="description" content="margin折叠起来~
-在CSS1中对于margin折叠的说明：
-
-原文：The width of the margin on non-floating block-level elements specifies the minimum distance to the edges of surrounding boxes. Two or more adjoining vertical margi">
+<meta name="description" content="用node来实现一个小爬虫~首先require模块http，这里爬取的是北邮的主页
+12var http = require(&apos;http&apos;);  var url = &apos;http://www.bupt.edu.cn/&apos;;
+在开始的时候，先试着拿到整个页面的HTML:
+1234567891011121314http.get(url, function(res) &amp;#123;	var html = &apos;&apos;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="margin折叠起来">
-<meta property="og:url" content="http://yoursite.com/2015/11/19/margin/index.html">
+<meta property="og:title" content="用node来实现一个小爬虫~">
+<meta property="og:url" content="http://yoursite.com/2015/12/03/node-crawler/index.html">
 <meta property="og:site_name" content="Christy's blog">
-<meta property="og:description" content="margin折叠起来~
-在CSS1中对于margin折叠的说明：
-
-原文：The width of the margin on non-floating block-level elements specifies the minimum distance to the edges of surrounding boxes. Two or more adjoining vertical margi">
-<meta property="og:updated_time" content="2015-11-21T08:53:17.571Z">
+<meta property="og:description" content="用node来实现一个小爬虫~首先require模块http，这里爬取的是北邮的主页
+12var http = require(&apos;http&apos;);  var url = &apos;http://www.bupt.edu.cn/&apos;;
+在开始的时候，先试着拿到整个页面的HTML:
+1234567891011121314http.get(url, function(res) &amp;#123;	var html = &apos;&apos;">
+<meta property="og:image" content="http://yoursite.com/images/crawler.png">
+<meta property="og:updated_time" content="2015-12-04T04:01:31.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="margin折叠起来">
-<meta name="twitter:description" content="margin折叠起来~
-在CSS1中对于margin折叠的说明：
-
-原文：The width of the margin on non-floating block-level elements specifies the minimum distance to the edges of surrounding boxes. Two or more adjoining vertical margi">
+<meta name="twitter:title" content="用node来实现一个小爬虫~">
+<meta name="twitter:description" content="用node来实现一个小爬虫~首先require模块http，这里爬取的是北邮的主页
+12var http = require(&apos;http&apos;);  var url = &apos;http://www.bupt.edu.cn/&apos;;
+在开始的时候，先试着拿到整个页面的HTML:
+1234567891011121314http.get(url, function(res) &amp;#123;	var html = &apos;&apos;">
 
 
 
@@ -83,7 +84,7 @@
   };
 </script>
 
-  <title> margin折叠起来 | Christy's blog </title>
+  <title> 用node来实现一个小爬虫~ | Christy's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +230,7 @@
             
             
               
-                margin折叠起来
+                用node来实现一个小爬虫~
               
             
           </h1>
@@ -238,8 +239,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-19T10:00:28+08:00" content="2015-11-19">
-              2015-11-19
+            <time itemprop="dateCreated" datetime="2015-12-03T14:40:10+08:00" content="2015-12-03">
+              2015-12-03
             </time>
           </span>
 
@@ -249,8 +250,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/19/margin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/19/margin/" itemprop="commentsCount"></span>
+                <a href="/2015/12/03/node-crawler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/node-crawler/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -269,28 +270,20 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="margin折叠起来~">margin折叠起来~</h1><hr>
-<p>在CSS1中对于margin折叠的说明：</p>
-<blockquote>
-<p>原文：The width of the margin on non-floating block-level elements specifies the minimum distance to the edges of surrounding boxes. Two or more adjoining vertical margins (i.e., with no border, padding or content between them) are collapsed to use the maximum of the margin values. In most cases, after collapsing the vertical margins the result is visually more pleasing and closer to what the designer expects.  </p>
-<p>翻译：外边距用来指定非浮动元素与其周围盒子边缘的最小距离。两个或两个以上的相邻的垂直外边距会被折叠并使用它们之间最大的那个外边距值。多数情况下，折叠垂直外边距可以在视觉上显得更美观，也更贴近设计师的预期。</p>
-</blockquote>
-<p>总结来说就是：  </p>
-<ol>
-<li>发生折叠需要时<strong>相邻</strong>的非浮动元素；  </li>
-<li>折叠发生在垂直外边距上，即margin-top\margin-bottom；  </li>
-<li>折叠后取其中最大的margin值作为最终值；  </li>
-</ol>
-<p>ps:<strong>相邻</strong>指的是处于同一个块级上下文中的块元素，没有行框，没有间隙，没有内边距和边框隔开它们。</p>
-<h3 id="如何避免margin折叠">如何避免margin折叠</h3><p><strong>margin折叠的条件</strong></p>
-<ol>
-<li>margin折叠元素只发生在块元素上；</li>
-<li>浮动元素不与其他元素margin折叠；</li>
-<li>创建了新的块级格式化上下文（BFC）的块元素，不与它的子元素发生margin折叠；</li>
-<li>绝对定位元素的margin不与其他任何margin发生折叠</li>
-</ol>
-<p>因此避免的方法有很多，改成把它非块级，让它浮动，让它绝对定位，让它overflow:hidden，用边框隔开它们……等等等……</p>
-<p>具体参考<a href="http://www.ituring.com.cn/article/64583" target="_blank" rel="external">这里</a></p>
+        <span itemprop="articleBody"><h3 id="用node来实现一个小爬虫~">用node来实现一个小爬虫~</h3><p>首先require模块http，这里爬取的是北邮的主页</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);  </span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://www.bupt.edu.cn/'</span>;</span><br></pre></td></tr></table></figure>
+<p>在开始的时候，先试着拿到整个页面的HTML:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> html = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">		html += data;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(html);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'获取页面出错'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>是不是so easy~!</p>
+<p>但是整个HTML代码并没有什么卵用，需要提取出中间有用的信息~！</p>
+<p>这里需要用到一个模块 <a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a> （语法类似于Jquery，主要用于爬虫）</p>
+<p>同样 引入该模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br></pre></td></tr></table></figure>
+<p>filterChapters方法用来提取主页中的章节（即顶部导航栏的内容）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterChapters</span>(<span class="params">html</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> $ = cheerio.load(html);</span><br><span class="line">	<span class="keyword">var</span> chapters = $(<span class="string">'.top_nav'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据结构</span></span><br><span class="line">	<span class="comment">// [&#123;</span></span><br><span class="line">	<span class="comment">// 	chapterTitle: '',</span></span><br><span class="line">	<span class="comment">// 	sub: [</span></span><br><span class="line">	<span class="comment">// 		subTitle: '',</span></span><br><span class="line">	<span class="comment">// 		url: ''</span></span><br><span class="line">	<span class="comment">// 	]</span></span><br><span class="line">	<span class="comment">// &#125;]</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> data = [];</span><br><span class="line"></span><br><span class="line">	chapters.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> chapter = $(<span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">var</span> chapterTitle = chapter.find(<span class="string">'span'</span>).text();</span><br><span class="line">		<span class="keyword">var</span> subs = chapter.next().find(<span class="string">'a'</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> chapterData = &#123;</span><br><span class="line">			chapterTitle: chapterTitle,</span><br><span class="line">			sub: []</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		subs.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> sub = $(<span class="keyword">this</span>);</span><br><span class="line">			<span class="keyword">var</span> subTitle = sub.text();</span><br><span class="line">			<span class="keyword">var</span> url = sub.attr(<span class="string">'href'</span>);</span><br><span class="line"></span><br><span class="line">			chapterData.sub.push(&#123;</span><br><span class="line">				subTitle: subTitle,</span><br><span class="line">				url: url </span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		data.push(chapterData);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印的格式调整一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printData</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">	data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> chapterTitle = item.chapterTitle;</span><br><span class="line">		<span class="built_in">console</span>.log(chapterTitle + <span class="string">'\n'</span>);</span><br><span class="line"></span><br><span class="line">		item.sub.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">sub</span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'  【'</span> + sub.subTitle + <span class="string">'】  '</span> + sub.url + <span class="string">'\n'</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终的样子就是这样：<br><img src="/images/crawler.png" class="[crawler]"></p>
 </span>
       
     </div>
@@ -302,17 +295,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/12/position/" rel="next" title="各种CSS的布局酱~！">
-                <i class="fa fa-chevron-left"></i> 各种CSS的布局酱~！
+              <a href="/2015/11/27/grunt/" rel="next" title="grunt学习笔记">
+                <i class="fa fa-chevron-left"></i> grunt学习笔记
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/19/bfc/" rel="prev" title="BFC(Block Formatting Contexts)">
-                BFC(Block Formatting Contexts) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -327,10 +316,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/11/19/margin/"
-     data-title="margin折叠起来"
+        <div class="ds-share flat" data-thread-key="2015/12/03/node-crawler/"
+     data-title="用node来实现一个小爬虫~"
      data-content=""
-     data-url="http://yoursite.com/2015/11/19/margin/">
+     data-url="http://yoursite.com/2015/12/03/node-crawler/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -361,8 +350,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/19/margin/"
-           data-title="margin折叠起来" data-url="http://yoursite.com/2015/11/19/margin/">
+      <div class="ds-thread" data-thread-key="2015/12/03/node-crawler/"
+           data-title="用node来实现一个小爬虫~" data-url="http://yoursite.com/2015/12/03/node-crawler/">
       </div>
     
   </div>
@@ -470,7 +459,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#margin折叠起来~"><span class="nav-number">1.</span> <span class="nav-text">margin折叠起来~</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何避免margin折叠"><span class="nav-number">1.0.1.</span> <span class="nav-text">如何避免margin折叠</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用node来实现一个小爬虫~"><span class="nav-number">1.</span> <span class="nav-text">用node来实现一个小爬虫~</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

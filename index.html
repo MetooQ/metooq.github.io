@@ -205,15 +205,215 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/03/node-crawler/" itemprop="url">
+                  用node来实现一个小爬虫~
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-03T14:40:10+08:00" content="2015-12-03">
+              2015-12-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/03/node-crawler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/03/node-crawler/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
       
-        
-        
-        
       
 
       
+        
+          <span itemprop="articleBody">
+            
+              <h3 id="用node来实现一个小爬虫~">用node来实现一个小爬虫~</h3><p>首先require模块http，这里爬取的是北邮的主页</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);  </span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'http://www.bupt.edu.cn/'</span>;</span><br></pre></td></tr></table></figure>
+<p>在开始的时候，先试着拿到整个页面的HTML:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> html = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">		html += data;</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(html);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">&#125;).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'获取页面出错'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>是不是so easy~!</p>
+<p>但是整个HTML代码并没有什么卵用，需要提取出中间有用的信息~！</p>
+<p>这里需要用到一个模块 <a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a> （语法类似于Jquery，主要用于爬虫）</p>
+<p>同样 引入该模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br></pre></td></tr></table></figure>
+<p>filterChapters方法用来提取主页中的章节（即顶部导航栏的内容）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterChapters</span>(<span class="params">html</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> $ = cheerio.load(html);</span><br><span class="line">	<span class="keyword">var</span> chapters = $(<span class="string">'.top_nav'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据结构</span></span><br><span class="line">	<span class="comment">// [&#123;</span></span><br><span class="line">	<span class="comment">// 	chapterTitle: '',</span></span><br><span class="line">	<span class="comment">// 	sub: [</span></span><br><span class="line">	<span class="comment">// 		subTitle: '',</span></span><br><span class="line">	<span class="comment">// 		url: ''</span></span><br><span class="line">	<span class="comment">// 	]</span></span><br><span class="line">	<span class="comment">// &#125;]</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> data = [];</span><br><span class="line"></span><br><span class="line">	chapters.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> chapter = $(<span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">var</span> chapterTitle = chapter.find(<span class="string">'span'</span>).text();</span><br><span class="line">		<span class="keyword">var</span> subs = chapter.next().find(<span class="string">'a'</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">var</span> chapterData = &#123;</span><br><span class="line">			chapterTitle: chapterTitle,</span><br><span class="line">			sub: []</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		subs.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> sub = $(<span class="keyword">this</span>);</span><br><span class="line">			<span class="keyword">var</span> subTitle = sub.text();</span><br><span class="line">			<span class="keyword">var</span> url = sub.attr(<span class="string">'href'</span>);</span><br><span class="line"></span><br><span class="line">			chapterData.sub.push(&#123;</span><br><span class="line">				subTitle: subTitle,</span><br><span class="line">				url: url </span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		data.push(chapterData);</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印的格式调整一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printData</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">	data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> chapterTitle = item.chapterTitle;</span><br><span class="line">		<span class="built_in">console</span>.log(chapterTitle + <span class="string">'\n'</span>);</span><br><span class="line"></span><br><span class="line">		item.sub.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">sub</span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'  【'</span> + sub.subTitle + <span class="string">'】  '</span> + sub.url + <span class="string">'\n'</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终的样子就是这样：<br><img src="/images/crawler.png" class="[crawler]"></p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/27/grunt/" itemprop="url">
+                  grunt学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-27T14:14:07+08:00" content="2015-11-27">
+              2015-11-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/27/grunt/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/27/grunt/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="##grunt学习笔记">##grunt学习笔记</h2><p>###NodeJS</p>
+<p>NodeJS可以用Javascript编写服务端程序</p>
+<p>###Yeoman</p>
+<p>WebApp的脚手架工具。在立项阶段，用于生成项目的文件和代码结构。代码校验、测试、压缩</p>
+<p><code>npm install -g yo</code></p>
+<p>###Bower</p>
+<blockquote>
+<p>澳洲的一种鸟，雄鸟在求偶的时候会用树枝来搭建凉亭，并用色彩鲜艳的物品来装饰，吸引雌鸟</p>
+</blockquote>
+<p>依赖包的管理工具，跟踪管理框、库、公共部分等</p>
+<p><code>npm install -g bower</code></p>
+<p>###Grunt</p>
+<p>自动化：压缩、编译、单元测试、代码校验</p>
+<p><code>npm install -g grunt-cli</code></p>
+<hr>
+<h3 id="Yeoman实践">Yeoman实践</h3><p><strong>生成器generator</strong></p>
+<p>angular</p>
+<p><code>yo angular name</code></p>
+<p>###Bower实践</p>
+<p>``</p>
+<p>``</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -872,7 +1072,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
